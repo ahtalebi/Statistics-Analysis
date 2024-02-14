@@ -1,7 +1,4 @@
----
-title: "Nadaraya-Watson Regression Estimation"
-output: html_document
----
+$$\hat{m}_n(x) = \frac{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)Y_i}{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)}$$
 
 
 # [Project Name]
