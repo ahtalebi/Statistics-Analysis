@@ -1,5 +1,21 @@
-$$\hat{m}_n(x) = \frac{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)Y_i}{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)}$$
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Equations</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  
+  <!-- Your LaTeX math equations here -->
+  <div>
+    \(\hat{m}_n(x) = \frac{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)Y_i}{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)}\)
+  </div>
 
+</body>
+</html>
 
 # [Project Name]
 We are going to construct and
