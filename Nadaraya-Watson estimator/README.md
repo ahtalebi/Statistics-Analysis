@@ -16,5 +16,5 @@ Here, $K$ is the kernel function, and $h$ is the bandwidth.
 
 ## Usage
 
-[//]: # (Provide examples or instructions on how to use your project. This could include code snippets, screenshots, or even a link to a live demo.)
-
+# LOESS (Smoothing data using local regression)
+https://towardsdatascience.com/loess-373d43b03564
