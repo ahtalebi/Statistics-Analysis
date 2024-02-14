@@ -5,11 +5,15 @@ plot the Nadaraya-Watson estimator using the bandwidths h=0.5, 2.5, 5, 10. The a
 
 # Nadaraya-Watson Regression Estimation
 
-In the context of estimating the regression function E(Y_i|X_i=x)=m(x) for a set of IID pairs of random variables (X_1, Y_1), ..., (X_n, Y_n), Nadaraya-Watson regression is employed. The estimator for m(x), denoted as m^_n(x), is given by:
+# Nadaraya-Watson Regression Estimation
 
-m^_n(x) = \frac{\sum_{i=1}^{n} K(\frac{X_i - x}{h})Y_i}{\sum_{i=1}^{n} K(\frac{X_i - x}{h})}
+In the context of estimating the regression function \(E(Y_i | X_i = x) = m(x)\) for a set of IID pairs of random variables \((X_1, Y_1), \ldots, (X_n, Y_n)\), Nadaraya-Watson regression is employed. The estimator for \(m(x)\), denoted as \(\hat{m}_n(x)\), is given by:
 
-Here, K is the kernel function, and h is the bandwidth.
+\[
+\hat{m}_n(x) = \frac{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)Y_i}{\sum_{i=1}^{n} K\left(\frac{X_i - x}{h}\right)}
+\]
+
+Here, \(K\) is the kernel function, and \(h\) is the bandwidth.
 
 
 
