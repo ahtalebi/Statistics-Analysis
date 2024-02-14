@@ -1,0 +1,102 @@
+---
+title: "Exercise 4"
+author: "Amir_Talebi"
+date: "2023-11-23"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+
+```{r}
+
+file_path <- '/home/amir/Documents/3rd_semester/non_parametric_STAT/ex4/belvalsearches.csv'
+
+data <- read.csv(file_path)
+head(data, 5)
+```
+
+```{r}
+library(tidyverse)
+
+# In this section, to plot "Belval", we change the "Week" column to index. So, it is easier to visualize. 
+
+my_data <- data %>%
+  mutate(Date = as.Date(Week, format = "%Y-%m-%d"),
+         Week_idx = row_number())
+
+my_data <- my_data[, c("Week_idx", "Belval")]
+head(my_data, 5)
+```
+
+
+```{r}
+# let's do a scatter plot of my_data.
+
+plot(my_data$Week_idx, my_data$Belval, 
+     xlab = "week_index", ylab = "Belval",
+     pch = 16, col = "blue")
+
+```
+
+
+
+```{r}
+# here we use "for" loops to calculate density estimator. 
+# Let's implement the formula given above. We've used the normal kernel function and bandwidth h = 1 to do the estimations. however, we can set any h>0 we wish. 
+
+n<-nrow(my_data)
+my_matrix1 <- matrix(NA, nrow=n, ncol=n)
+my_matrix2 <- matrix(NA, nrow=n, ncol=n)  
+for(i in 1:n)
+{
+  for(j in 1:n){
+    my_matrix1[i,j]<-dnorm(my_data$Week_idx[i]-my_data$Week_idx[j])*my_data$Belval[j]
+    my_matrix2[i,j]<-dnorm(my_data$Week_idx[i]-my_data$Week_idx[j])
+}
+}
+
+fx<-c()
+for(i in 1:n){
+fx[i]<-sum(my_matrix1[i,])/sum(my_matrix2[i,])
+}
+
+```
+
+
+```{r}
+
+# Also, R has a build-in function ksmooth() for the NW estimator. We could use it simply as well, 
+# however now we can compare our implementation and this built-in function performance. 
+
+z_R = ksmooth(my_data$Week_idx, my_data$Belval, kernel = "normal", bandwidth = 1)
+plot(my_data$Week_idx, my_data$Belval, xlab='week_index', ylab='Belval')
+lines(my_data$Week_idx,fx,type='l',col='blue',lwd=3)
+lines(z_R$x, z_R$y, type='l',col='red',lwd=3)
+
+```
+
+As it shows, the blue line estimated by our function is a little bit smoother than the red line that estimated by the built in R function ksmooth(). The goal is to construct and plot the Nadaraya-Watson estimator using the bandwidths h = 0.5, 2.5, 5, 10. In the next section:
+
+```{r}
+library(MASS)
+
+h_values <- c(0.5, 2.5, 5, 10)  # list of desired bandwidths. 
+
+plot(my_data$Week_idx, my_data$Belval, type = "n",
+     xlab = "Week_index", ylab = "Belval")
+
+plot_colors <- c("blue", "green", "red", "black")
+
+# for loop iterates over the h values.
+for (i in seq_along(h_values)) {
+  
+  z <- ksmooth(my_data$Week_idx, my_data$Belval, kernel = "normal", bandwidth = h_values[i])
+  
+  lines(z, col = plot_colors[i], lwd = 2)
+}
+
+legend("bottomleft", legend = paste("Bandwidth =", h_values), col = plot_colors, lty = 1, lwd = 2, cex = 0.8)
+
+```
