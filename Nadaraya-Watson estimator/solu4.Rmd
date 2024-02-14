@@ -100,3 +100,27 @@ for (i in seq_along(h_values)) {
 legend("bottomleft", legend = paste("Bandwidth =", h_values), col = plot_colors, lty = 1, lwd = 2, cex = 0.8)
 
 ```
+
+
+
+
+
+
+
+
+
+```{r}
+span_values <- c(1, 0.5, 0.25, 0.05)   # values of span to try
+par(mfrow = c(2, 2))                   # Create a 2x2 grid of plots
+
+for (span in span_values) {
+  loess_model <- loess(Belval ~ Week_idx, data = my_data, span = span)   # LOESS smoothing
+  
+  new_week_idx <- seq(min(my_data$Week_idx), max(my_data$Week_idx), length.out = 100)
+  predicted_belval <- predict(loess_model, newdata = data.frame(Week_idx = new_week_idx))
+  
+  plot(my_data$Week_idx, my_data$Belval, main = paste("LOESS Smoothing (Span =", span, ")", sep = ""), xlab = "Week_idx", ylab = "Belval")
+  lines(new_week_idx, predicted_belval, col = "red", lwd = 2)
+}
+
+```
