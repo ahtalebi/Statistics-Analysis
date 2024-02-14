@@ -1,6 +1,6 @@
 # Target
 We are going to construct and
-plot the Nadaraya-Watson estimator using the bandwidths h=0.5, 2.5, 5, 10. The analysis has been done in R programming languge. 
+plot the Nadaraya-Watson estimator using the bandwidths $h=0.5, 2.5, 5, 10$. The analysis has been done in R programming languge. 
 
 # Nadaraya-Watson Regression Estimation
 
